@@ -1,0 +1,70 @@
+#!/bin/bash
+
+FILE_NAME=${1}
+CURRENT_BRANCH=$(git branch | grep \* | cut -d ' ' -f2)
+
+date > $FILE_NAME
+cat $FILE_NAME
+
+echo -e "You are in this branch \"${CURRENT_BRANCH}\".\n"
+
+while true; do
+    read -p "Do you want to checkout from that branch?:" yn
+    case $yn in
+        [Yy]* )echo "commit file"
+               read FILE_NAME
+               git add $FILE_NAME
+               git commit
+while true; do
+    read -p "Do you want to push \"$FILE_NAME\"  up ?:" yn
+    case $yn in
+        [Yy]* )git push origin ${CURRENT_BRANCH};  break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+      esac
+done
+               break;;
+        [Nn]* ) echo "Which one do you want to check?:"
+                git branch
+                read varname
+                git checkout $varnamE
+ while true; do
+    read -p "Do you want to creat new branch?:" yn
+    case $yn in
+        [Yy]* ) echo "Your new branch name is: " 
+                read varnamee
+                git branch $varnamee
+                git checkout $varnamee
+                echo "You now in $varnamee"
+                echo "commit file"
+                read FILE_NAME
+                git add $FILE_NAME
+                git commit
+while true; do
+    read -p "Do you want to push "$FILE_NAME"  up ?:" yn
+    case $yn in
+        [Yy]* )git push origin ${CURRENT_BRANCH};  break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+      esac
+done
+                break;;
+        [Nn]* )
+while true; do
+    read -p "Do you want to push "$FILE_NAME"  up ?:" yn
+    case $yn in
+        [Yy]* )git push origin ${CURRENT_BRANCH};  break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+      esac
+done
+ exit;;
+        * ) echo "Please answer yes or no.";;
+      esac
+ done
+
+                exit;;
+        * ) echo "Please answer yes or no.";;
+      esac
+done
+
